@@ -16,7 +16,9 @@ case "$operation" in
         echo "Starting building kernel..."
         cd $KERNEL_DIR
         make $DEFCONFIG O=$OUTPUT_DIR
-        make -j8 O=$OUTPUT_DIR
+        bear make -j8 O=$OUTPUT_DIR
+        cp $OUTPUT_DIR/arch/arm/boot/dts/imxplore.dtb $BURNTOOL_DIR
+        cp $OUTPUT_DIR/arch/arm/boot/zImage $BURNTOOL_DIR
         ;;
     "clean")
         echo "remove $OUTPUT_DIR"
@@ -28,7 +30,5 @@ case "$operation" in
         ;;
 esac
 
-cp $OUTPUT_DIR/arch/arm/boot/dts/imxplore.dtb $BURNTOOL_DIR
-cp $OUTPUT_DIR/arch/arm/boot/zImage $BURNTOOL_DIR
 # cp ${OUTPUT_DIR}/arch/arm/boot/dts/dfos.dtb ~/nfs/update/kernel4.14
 # cp ${OUTPUT_DIR}/arch/arm/boot/zImage ~/nfs/update/kernel4.14
