@@ -16,7 +16,8 @@ case "$operation" in
         echo "Starting building uboot..."
         cd $UBOOT_DIR
         make $DEFCONFIG O=$OUTPUT_DIR
-        make -j8 O=$OUTPUT_DIR
+        bear make -j8 O=$OUTPUT_DIR
+        cp $OUTPUT_DIR/u-boot.imx $BURNTOOL_DIR
         ;;
     "clean")
         echo "remove $OUTPUT_DIR"
@@ -28,4 +29,3 @@ case "$operation" in
         ;;
 esac
 
-cp $OUTPUT_DIR/u-boot.imx $BURNTOOL_DIR
